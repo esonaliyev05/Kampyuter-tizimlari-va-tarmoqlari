@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kompyuter Tarmoqlari — O'quv Kursi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+
+<div class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+      <circle cx="6" cy="6" r="3" stroke="#49D6C4" stroke-width="1.6"/>
+      <circle cx="22" cy="6" r="3" stroke="#7C8CFF" stroke-width="1.6"/>
+      <circle cx="14" cy="22" r="3" stroke="#F2A65A" stroke-width="1.6"/>
+      <path d="M8.6 7.6L19.4 7.6M9 8.6L13 19.6M19 8.6L15 19.6" stroke="#3A4763" stroke-width="1.3"/>
+    </svg>
+    <span>Kompyuter Tarmoqlari<small>NAMDTU · O'QUV DASTURI · 6 KREDIT</small></span>
+  </div>
+  <button class="burger" id="burgerBtn" aria-label="Menyuni ochish">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div>
+
+<div class="shell">
+  <nav class="side" id="sideNav">
+    <p class="nav-label">Nazariy qism</p>
+    <ul class="nav-list">
+      <li><a class="nav-item" data-target="t1" href="#t1"><span class="num">01</span> Tarmoq asoslari</a></li>
+      <li><a class="nav-item" data-target="t2" href="#t2"><span class="num">02</span> Topologiyalar</a></li>
+      <li><a class="nav-item" data-target="t3" href="#t3"><span class="num">03</span> OSI/ISO modeli</a></li>
+      <li><a class="nav-item" data-target="t4" href="#t4"><span class="num">04</span> Tarmoq qurilmalari</a></li>
+      <li><a class="nav-item" data-target="t5" href="#t5"><span class="num">05</span> IP manzillar</a></li>
+      <li><a class="nav-item" data-target="t6" href="#t6"><span class="num">06</span> DHCP protokoli</a></li>
+      <li><a class="nav-item" data-target="t7" href="#t7"><span class="num">07</span> DNS server</a></li>
+      <li><a class="nav-item" data-target="t8" href="#t8"><span class="num">08</span> FTP xizmati</a></li>
+    </ul>
+    <p class="nav-label">Amaliyot</p>
+    <ul class="nav-list">
+      <li><a class="nav-item" data-target="lab" href="#lab"><span class="num">▸</span> Amaliy mashg'ulotlar</a></li>
+      <li><a class="nav-item" data-target="lit" href="#lit"><span class="num">▸</span> Adabiyotlar</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Axborot-kommunikatsiya texnologiyalari</span>
+        <h1>Kompyuterlarni <em>tarmoqqa</em> ulash mantig'ini tushunish.</h1>
+        <p class="lead">Hisoblash tizimlari arxitekturasidan tortib IP manzillash, DHCP, DNS va FTP xizmatlarigacha — kurs dasturi asosida tuzilgan, misollar va sxemalar bilan boyitilgan qo'llanma.</p>
+        <div class="hero-stats">
+          <div class="stat"><b>180</b><span>soat — jami yuklama</span></div>
+          <div class="stat"><b>8</b><span>asosiy mavzu</span></div>
+          <div class="stat"><b>7</b><span>amaliy mashg'ulot</span></div>
+          <div class="stat"><b>OSI · TCP/IP</b><span>asosiy modellar</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-tabs" id="topoTabs">
+          <button class="topo-btn on" data-topo="star">Yulduz</button>
+          <button class="topo-btn" data-topo="bus">Shina</button>
+          <button class="topo-btn" data-topo="ring">Xalqa</button>
+          <button class="topo-btn" data-topo="tree">Daraxt</button>
+          <button class="topo-btn" data-topo="mesh">To'r (Mesh)</button>
+        </div>
+        <svg id="topoSvg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg"></svg>
+        <p class="topo-caption" id="topoCaption"></p>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="topic reveal" id="t1">
+      <div class="topic-kicker"><span class="idx">01</span><span class="tag">Kirish</span></div>
+      <h2>Hisoblash tizimlarida axborot jarayonlari va tarmoq tushunchasi</h2>
+      <p class="dek">Zamonaviy jamiyatda axborot texnologiyalari texnika, iqtisod, ta'lim va boshqaruvning barcha sohalarida qo'llaniladi. Bu texnologiyalarning markazida — kompyuterlar orasida ma'lumot almashishni ta'minlaydigan kompyuter tarmog'i turadi.</p>
+
+      <div class="grid2 reveal-stagger">
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent)"></span>Kompyuter tarmog'i nima?</h4>
+          <p>Kompyuter tarmog'i — bir-biri bilan aloqa kanallari (kabel yoki simsiz muhit) orqali bog'langan va umumiy resurslar (fayllar, printerlar, internet kanali)dan birgalikda foydalanadigan hisoblash qurilmalari majmuasidir.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-2)"></span>Hisoblash tizimi arxitekturasi</h4>
+          <p>Har bir tarmoq tuguni — protsessor, xotira ierarxiyasi (keshdan tortib tashqi xotiragacha) va periferik qurilmalar orasidagi buyruq va manzil rejimlariga asoslangan arxitekturaga ega bo'ladi. Bu arxitektura tarmoq orqali ma'lumot almashish tezligiga bevosita ta'sir qiladi.</p>
+        </div>
+      </div>
+
+      <div class="callout"><b>Nega muhim:</b>&nbsp;Tarmoqlashtirish darajasi oshgani sari — bitta kompyuterdan tortib butun davlat miqyosidagi tarmoqlargacha — axborotni qayta ishlash tezligi va sifatiga bo'lgan talab ham ortib boradi. Shu sababli fan zamonaviy kompyuterlarning tuzilishi, buyruq va manzil rejimlari, xotira ierarxiyasi hamda tarmoqlardagi almashinuv jarayonlarini birga o'rgatadi.</div>
+
+      <div class="example"><span class="ico">💡</span><div><b>Oddiy tilda:</b>&nbsp;Kompyuter tarmog'ini shahar yo'l tarmog'iga o'xshatish mumkin — har bir kompyuter uy, kabellar esa ko'chalar. Ma'lumot ("mashina") manzil ("IP") bo'yicha yo'llar orqali kerakli uyga yetib boradi.</div></div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Hisoblash tizimi arxitekturasi</div>
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" id="archDiagram"></svg>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">Me'yoriy-huquqiy hujjatlar</span>
+        <span class="pill">Axborotlashtirish qonuni</span>
+        <span class="pill">Raqamli iqtisodiyot</span>
+        <span class="pill">Hisoblash tizimi arxitekturasi</span>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Tugunlar tarmog'i — jonli sxema</div>
+        <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" id="netFabric"></svg>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="topic reveal" id="t2">
+      <div class="topic-kicker"><span class="idx">02</span><span class="tag">Tuzilma</span></div>
+      <h2>Tarmoq topologiyalari va ularning turlari</h2>
+      <p class="dek">Topologiya — tarmoq tugunlarining fizik yoki mantiqiy joylashish sxemasi. Topologiya tanlovi tarmoqning tezkorligi, ishonchliligi va kengayish imkoniyatiga bevosita ta'sir qiladi. Yuqoridagi sxemani bosib har bir turni ko'ring.</p>
+
+      <div class="grid3 reveal-stagger">
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent)"></span>Shina (Bus)</h4>
+          <p>Barcha tugunlar bitta umumiy kabelga ulanadi. Qurish arzon, lekin kabel uzilsa butun tarmoq ishdan chiqadi.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-2)"></span>Yulduz (Star)</h4>
+          <p>Har bir tugun markaziy qurilma (switch/hub)ga alohida ulanadi. Eng keng tarqalgan — bitta kabel uzilishi butun tarmoqqa ta'sir qilmaydi.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-3)"></span>Xalqa (Ring)</h4>
+          <p>Tugunlar halqa shaklida ketma-ket ulanadi, ma'lumot bir yo'nalishda uzatiladi. Token Ring texnologiyasida qo'llanilgan.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:#8CF0DE"></span>Daraxt (Tree)</h4>
+          <p>Yulduz topologiyalarining ierarxik birlashuvi — yirik korporativ tarmoqlarda segmentlarni boshqarish uchun qulay.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--danger)"></span>To'liq bog'langan (Mesh)</h4>
+          <p>Har bir tugun boshqa barcha tugunlar bilan bevosita bog'lanadi. Yuqori ishonchlilik, lekin kabel va port sarfi katta.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:#7C8CFF"></span>Tezkorlik va uni oshirish</h4>
+          <p>Tarmoq tezligi kanal o'tkazuvchanligi, kollizion domenlar soni va qurilma texnik ko'rsatkichlariga bog'liq; switch va full-duplex aloqa tezlikni sezilarli oshiradi.</p>
+        </div>
+      </div>
+
+      <div class="example"><span class="ico">💡</span><div><b>Oddiy tilda:</b>&nbsp;Yulduz topologiyasi — sinfdagi partalarni o'qituvchi stoliga bog'laydigan sxemaga o'xshaydi: har bir talaba (kompyuter) to'g'ridan-to'g'ri o'qituvchi (switch) bilan gaplashadi. Shina esa umumiy koridor kabi — hamma bitta yo'ldan foydalanadi, u band bo'lsa hammaga xalaqit beradi.</div></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="topic reveal" id="t3">
+      <div class="topic-kicker"><span class="idx">03</span><span class="tag">Model</span></div>
+      <h2>ISO/OSI tarmoq modeli</h2>
+      <p class="dek">OSI (Open Systems Interconnection) — turli ishlab chiqaruvchilarning tarmoq qurilmalari bir-biri bilan mos ishlashi uchun Xalqaro Standartlashtirish Tashkiloti (ISO) tomonidan taklif qilingan 7 qatlamli mos yozuv modeli. Har bir qatlamni bosib uning vazifasi bilan tanishing.</p>
+
+      <div class="example"><span class="ico">✉️</span><div><b>Oddiy tilda:</b>&nbsp;Xat jo'natishni tasavvur qiling: siz xat yozasiz (Amaliy), uni tilga tarjima qilasiz (Taqdimot), konvertga solasiz (Seans), manzil yozib pochtaga topshirasiz (Transport), pochta uni shahringiz orqali yo'naltiradi (Tarmoq), mashinaga ortadi (Kanal) va yo'lga chiqaradi (Fizik). Qabul qiluvchi tomonda bu jarayon teskari tartibda takrorlanadi.</div></div>
+
+      <div class="grid2" style="align-items:start; grid-template-columns:1.3fr .7fr;">
+        <div class="osi" id="osiList"></div>
+        <div class="diagram-card" style="margin-top:0;">
+          <div class="diagram-title">Paketning yo'li</div>
+          <svg viewBox="0 0 260 300" xmlns="http://www.w3.org/2000/svg" id="osiStack"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="topic reveal" id="t4">
+      <div class="topic-kicker"><span class="idx">04</span><span class="tag">Uskunalar</span></div>
+      <h2>Tarmoq qurilmalari va ularning turlari</h2>
+      <p class="dek">Tarmoqni jismonan qurish uchun turli maqsadli qurilmalardan foydalaniladi. Har birining OSI modelidagi ishlash darajasi va vazifasi farqlanadi.</p>
+
+      <div class="grid3 reveal-stagger">
+        <div class="card device-card">
+          <div class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#49D6C4" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2" fill="#49D6C4"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div>
+          <div>
+            <h4>Hub — tarmoq uyasi</h4>
+            <p>Kirgan signalni barcha portlarga takrorlab jo'natadi. Fizik (1-) qatlamda ishlaydi, "aqlsiz" qurilma — kollizion domenlarni ajratmaydi.</p>
+          </div>
+        </div>
+        <div class="card device-card">
+          <div class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#F2A65A" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="1.5"/><path d="M7 12h.01M12 12h.01M17 12h.01"/></svg></div>
+          <div>
+            <h4>Switch — tarmoq kommutatori</h4>
+            <p>MAC-manzillar jadvali asosida ma'lumotni faqat kerakli portga yo'naltiradi. Kanal (2-) qatlamda ishlaydi, tarmoq unumdorligini sezilarli oshiradi.</p>
+          </div>
+        </div>
+        <div class="card device-card">
+          <div class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7C8CFF" stroke-width="1.6"><path d="M4 19l6-14M14 19l6-14M4 19h16"/></svg></div>
+          <div>
+            <h4>Router — marshrutizator</h4>
+            <p>Turli tarmoqlar (masalan, lokal tarmoq va Internet) orasida IP manzillar asosida marshrut tanlaydi. Tarmoq (3-) qatlamda ishlaydi.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="margin-top:20px;">
+        <table>
+          <thead><tr><th>Qurilma</th><th>OSI qatlami</th><th class="mono">Manzillash</th><th>Asosiy vazifa</th></tr></thead>
+          <tbody>
+            <tr><td>Hub</td><td>Fizik</td><td class="mono">—</td><td>Signalni kuchaytirib barcha portlarga uzatish</td></tr>
+            <tr><td>Switch</td><td>Kanal</td><td class="mono">MAC</td><td>Kadrlarni aniq portga yo'naltirish</td></tr>
+            <tr><td>Router</td><td>Tarmoq</td><td class="mono">IP</td><td>Tarmoqlar orasida paketlarni marshrutlash</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Uy/ofis tarmog'i qanday quriladi</div>
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" id="homeNet"></svg>
+      </div>
+
+      <div class="example"><span class="ico">💡</span><div><b>Oddiy tilda:</b>&nbsp;Router — bu uyingiz bilan tashqi dunyo (Internet) orasidagi darvozabon: kim kirib-chiqishini biladi. Switch — uy ichidagi barcha xonalarni bir-biriga ulovchi yo'lak. Hub esa eski, "hammaga baqirib gapiradigan" oddiy taqsimlagich.</div></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="topic reveal" id="t5">
+      <div class="topic-kicker"><span class="idx">05</span><span class="tag">Manzillash</span></div>
+      <h2>IP manzillar va ularning sinflanishi</h2>
+      <p class="dek">IP (Internet Protocol) manzil — tarmoqdagi har bir qurilmani noyob tarzda aniqlash uchun ishlatiladigan 32 bitli (IPv4) raqamli identifikator. Manzillar tarmoq hajmiga qarab sinflarga bo'linadi.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sinf</th><th class="mono">Diapazon</th><th>Standart maska</th><th>Qo'llanilishi</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td class="mono">1.0.0.0 – 126.255.255.255</td><td class="mono">255.0.0.0 /8</td><td>Juda yirik tarmoqlar</td></tr>
+            <tr><td>B</td><td class="mono">128.0.0.0 – 191.255.255.255</td><td class="mono">255.255.0.0 /16</td><td>O'rta hajmdagi tarmoqlar</td></tr>
+            <tr><td>C</td><td class="mono">192.0.0.0 – 223.255.255.255</td><td class="mono">255.255.255.0 /24</td><td>Kichik (lokal) tarmoqlar</td></tr>
+            <tr><td>D</td><td class="mono">224.0.0.0 – 239.255.255.255</td><td class="mono">—</td><td>Multicast (guruhli uzatish)</td></tr>
+            <tr><td>E</td><td class="mono">240.0.0.0 – 255.255.255.255</td><td class="mono">—</td><td>Zaxira / tadqiqot maqsadlarida</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid2 reveal-stagger" style="margin-top:20px;">
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent)"></span>Statik IP manzil</h4>
+          <p>Administrator tomonidan qo'lda, doimiy ravishda belgilanadi. Serverlar va tarmoq qurilmalari uchun qulay — manzil o'zgarmasligi kerak bo'lgan holatlarda ishlatiladi.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-2)"></span>Dinamik IP manzil</h4>
+          <p>DHCP protokoli orqali avtomatik ravishda, belgilangan muddatga (lease time) beriladi. Oddiy foydalanuvchi kompyuterlari uchun qulay va boshqarishni osonlashtiradi.</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">32 bitli IPv4 manzil — 4 ta oktet</div>
+        <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" id="ipBits"></svg>
+      </div>
+
+      <div class="example"><span class="ico">🏠</span><div><b>Oddiy tilda:</b>&nbsp;IP manzil — kompyuteringizning "uy manzili" kabi: shahar, ko'cha, uy raqami singari, tarmoq uni aynan qayerdan topishni biladi. Shu sababli tarmoqdagi ikkita qurilmada bir xil IP manzil bo'lishi mumkin emas.</div></div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Ma'lumot paketi tuzilishi (soddalashtirilgan)</div>
+        <svg viewBox="0 0 700 110" xmlns="http://www.w3.org/2000/svg" id="packetShape"></svg>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="topic reveal" id="t6">
+      <div class="topic-kicker"><span class="idx">06</span><span class="tag">Avtomatlashtirish</span></div>
+      <h2>DHCP tarmoq protokoli</h2>
+      <p class="dek">DHCP (Dynamic Host Configuration Protocol) — tarmoqdagi qurilmalarga IP manzil, quyi tarmoq maskasi, standart shlyuz va DNS server manzilini avtomatik tarzda taqsimlaydigan protokol. Cisco Packet Tracer dasturida bu jarayon amaliy tarzda modellashtiriladi.</p>
+
+      <div class="steps">
+        <div class="step"><div class="sn"></div><div><h4>DISCOVER</h4><p>Yangi qurilma tarmoqqa ulanganda butun tarmoqqa broadcast so'rov yuboradi: "Menga IP manzil kerak".</p></div></div>
+        <div class="step"><div class="sn"></div><div><h4>OFFER</h4><p>DHCP-server bo'sh IP manzil, maska va boshqa parametrlarni taklif qiladi.</p></div></div>
+        <div class="step"><div class="sn"></div><div><h4>REQUEST</h4><p>Qurilma taklif qilingan manzilni rasmiy ravishda so'rab, serverga tasdiq so'rovi yuboradi.</p></div></div>
+        <div class="step"><div class="sn"></div><div><h4>ACKNOWLEDGE</h4><p>Server manzilni belgilangan muddatga (lease) biriktiradi va qurilma tarmoqda ishlashga tayyor bo'ladi.</p></div></div>
+      </div>
+
+      <div class="callout"><b>Amaliyotda:</b>&nbsp;Cisco Packet Tracer dasturida router yoki alohida server qurilmasida DHCP xizmatini yoqib, kompyuterlarga avtomatik IP berish, shuningdek DNS server va statik IP manzillarni qo'lda sozlash mashqi bajariladi.</div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">DHCP xabarlar almashinuvi (DORA)</div>
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" id="dhcpFlow"></svg>
+      </div>
+
+      <div class="example"><span class="ico">🏨</span><div><b>Oddiy tilda:</b>&nbsp;DHCP xuddi mehmonxonaga kirishga o'xshaydi: siz kelib xona so'raysiz (DISCOVER), administrator bo'sh xonani taklif qiladi (OFFER), siz "roziman" deysiz (REQUEST), va sizga kalit beriladi (ACK) — muayyan muddatga.</div></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="topic reveal" id="t7">
+      <div class="topic-kicker"><span class="idx">07</span><span class="tag">Nomlash tizimi</span></div>
+      <h2>DNS server va uning afzalliklari</h2>
+      <p class="dek">DNS (Domain Name System) — inson uchun qulay domen nomlarini (masalan, namdtu.uz) kompyuterlar tushunadigan IP manzillarga aylantiruvchi taqsimlangan nomlash tizimi.</p>
+
+      <div class="grid2 reveal-stagger">
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent)"></span>Qanday ishlaydi</h4>
+          <p>Brauzerga domen nomi kiritilganda, so'rov DNS serverga yuboriladi va u domenga mos IP manzilni qaytaradi, so'ngra ulanish shu manzil orqali amalga oshadi.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-2)"></span>Afzalliklari</h4>
+          <p>Foydalanuvchi murakkab raqamli manzillarni yodlamaydi; server manzili o'zgarganda domen nomi o'zgarishsiz qoladi; markazlashtirilgan boshqaruv va yuklamani taqsimlash imkonini beradi.</p>
+        </div>
+      </div>
+
+      <div class="cmd"><span class="c"># Domen nomini IP manzilga o'girish (misol)</span>
+nslookup namdtu.uz
+<span class="c"># Natija:</span>
+Server:   192.168.1.1
+Address:  192.168.1.1#53
+Non-authoritative answer:
+Name:     namdtu.uz
+Address:  185.xxx.xxx.xxx</div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Domen nomini aniqlash yo'li</div>
+        <svg viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" id="dnsFlow"></svg>
+      </div>
+
+      <div class="example"><span class="ico">📇</span><div><b>Oddiy tilda:</b>&nbsp;DNS — telefondagi kontaktlar ro'yxatiga o'xshaydi: siz do'stingizning 11 xonali raqamini emas, ismini eslaysiz. Xuddi shunday, siz "namdtu.uz" ni yozasiz, DNS esa uni tegishli IP raqamiga aylantiradi.</div></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="topic reveal" id="t8">
+      <div class="topic-kicker"><span class="idx">08</span><span class="tag">Fayl almashish</span></div>
+      <h2>FTP xizmati imkoniyatlari</h2>
+      <p class="dek">FTP (File Transfer Protocol) — mijoz va server o'rtasida fayllarni tarmoq orqali uzatish uchun mo'ljallangan standart protokol. Total Commander va FileZilla kabi dasturiy ilovalar orqali amaliy qo'llaniladi.</p>
+
+      <div class="grid2 reveal-stagger">
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent)"></span>Ishlash tamoyili</h4>
+          <p>FTP mijoz-server arxitekturasiga asoslanadi: mijoz FTP serverga ulanadi, autentifikatsiyadan (login/parol) o'tadi va fayllarni yuklab olish yoki yuklab qo'yish imkoniyatiga ega bo'ladi.</p>
+        </div>
+        <div class="card">
+          <h4><span class="dot" style="background:var(--accent-2)"></span>Amaliy vositalar</h4>
+          <p>FileZilla va Total Commander kabi dasturlar orqali FTP serverga ulanib, papka va fayllarni grafik interfeys yordamida boshqarish mashqi bajariladi.</p>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill mono">Port 21 — boshqaruv</span>
+        <span class="pill mono">Port 20 — ma'lumot</span>
+        <span class="pill">Anonim kirish</span>
+        <span class="pill">Login/parol autentifikatsiyasi</span>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-title">Fayl uzatish jarayoni</div>
+        <svg viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" id="ftpFlow"></svg>
+      </div>
+
+      <div class="example"><span class="ico">📦</span><div><b>Oddiy tilda:</b>&nbsp;FTP — pochta orqali posilka jo'natishga o'xshaydi: bitta "yo'l" (port 21) faqat buyruq va manzil uchun, boshqa "yo'l" (port 20) esa haqiqiy yuk — fayllarning o'zi uchun ishlatiladi.</div></div>
+    </section>
+
+    <section class="topic reveal" id="lab">
+      <div class="topic-kicker"><span class="idx">▸</span><span class="tag">Amaliyot</span></div>
+      <h2>Amaliy va tajriba mashg'ulotlari bo'yicha tavsiyalar</h2>
+      <p class="dek">Fan bo'yicha nazariy bilimlarni mustahkamlash uchun quyidagi amaliy mashg'ulotlar tavsiya etiladi.</p>
+      <div class="grid3 reveal-stagger">
+        <div class="card"><h4>1. Topologiyalar</h4><p>Tarmoqlarni qurishda fizik va mantiqiy topologiyalardan foydalanish.</p></div>
+        <div class="card"><h4>2. Packet Tracer</h4><p>Cisco Packet Tracer dasturini o'rnatish va interfeysi bilan tanishish.</p></div>
+        <div class="card"><h4>3. Kabellar</h4><p>UTP va FTP kabellar misolida tarmoq kabellarini hosil qilish.</p></div>
+        <div class="card"><h4>4. Ulash va almashish</h4><p>Ikki va undan ortiq kompyuterni o'zaro tarmoqqa ulash va ma'lumot almashish.</p></div>
+        <div class="card"><h4>5. DHCP amaliyoti</h4><p>Packet Tracer dasturi yordamida DHCP tarmoq protokolini ishlatish.</p></div>
+        <div class="card"><h4>6. Wi-Fi tarmog'i</h4><p>Packet Tracer dasturi yordamida simsiz (Wi-Fi) tarmoq hosil qilish.</p></div>
+        <div class="card"><h4>7. FTP amaliyoti</h4><p>Total Commander va FileZilla dasturlari orqali FTP xizmati imkoniyatlarini sinab ko'rish.</p></div>
+      </div>
+    </section>
+
+    <section class="topic reveal" id="lit" style="padding-bottom:60px;">
+      <div class="topic-kicker"><span class="idx">▸</span><span class="tag">Manbalar</span></div>
+      <h2>Tavsiya etilgan adabiyotlar</h2>
+      <div class="grid2 reveal-stagger">
+        <div class="card">
+          <h4>Asosiy adabiyotlar</h4>
+          <p>В.Олифер, Н.Олифер — «Компьютерные сети» (4-nashr, 2010)</p>
+          <p>James F. Kurose &amp; Keith W. Ross — «Computer Networking: A Top-Down Approach»</p>
+          <p>Douglas E. Comer — «Computer Networks and Internets»</p>
+        </div>
+        <div class="card">
+          <h4>Axborot manbalari</h4>
+          <p class="mono" style="font-size:13px;">ziyonet.uz</p>
+          <p class="mono" style="font-size:13px;">informika.ru</p>
+          <p class="mono" style="font-size:13px;">bilim.uz</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="fmark mono">KOMPYUTER TARMOQLARI · O'QUV DASTURI ASOSIDA</div>
+  Namangan Davlat Texnika Universiteti — "Axborot tizimlari va texnologiyalari" kafedrasi
+
+  <div class="creator">
+    <div class="creator-name">Esonaliyev Alyorbek<span>Ushbu saytning yaratuvchisi</span></div>
+    <div class="socials">
+      <span class="social-btn" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span class="social-btn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-3.7c0-1.4 1-2.3 2.2-2.3 1.2 0 2 .9 2 2.3v3.7"/></svg>
+      </span>
+      <span class="social-btn" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 4L3 11.5l6 2M21 4l-3.2 16-6.8-5M21 4L9 14.5M9 14.5V19l3-3"/></svg>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>
