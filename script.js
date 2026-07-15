@@ -1,4 +1,3 @@
-// Mobile nav toggle
 const burger = document.getElementById('burgerBtn');
 const sideNav = document.getElementById('sideNav');
 burger.addEventListener('click', () => sideNav.classList.toggle('show'));
@@ -15,13 +14,11 @@ document.querySelectorAll('.nav-item').forEach(item=>{
         const top = target.getBoundingClientRect().top + window.pageYOffset - TOPBAR_OFFSET;
         window.scrollTo({top, behavior:'smooth'});
       };
-      // wait a tick so the mobile menu close doesn't fight the scroll calculation
       requestAnimationFrame(()=> requestAnimationFrame(doScroll));
     }
   });
 });
 
-// Active nav highlight on scroll
 const navItems = document.querySelectorAll('.nav-item');
 const sections = [...navItems].map(i => document.getElementById(i.dataset.target)).filter(Boolean);
 const obs = new IntersectionObserver((entries)=>{
@@ -35,7 +32,6 @@ const obs = new IntersectionObserver((entries)=>{
 }, {rootMargin:'-20% 0px -70% 0px', threshold:0});
 sections.forEach(s=>obs.observe(s));
 
-// OSI layers data + accordion
 const osiData = [
   {n:7, name:"Amaliy (Application)", ex:"HTTP · FTP · DNS", desc:"Foydalanuvchi ilovalari tarmoq xizmatlariga to'g'ridan-to'g'ri murojaat qiladigan qatlam — brauzer, elektron pochta, fayl uzatish shu yerda ishlaydi."},
   {n:6, name:"Taqdimot (Presentation)", ex:"SSL/TLS · JPEG", desc:"Ma'lumotni shifrlash, siqish va formatlarni moslashtirish orqali ikki tizim bir-birining ma'lumotini to'g'ri tushunishini ta'minlaydi."},
@@ -62,10 +58,8 @@ osiData.forEach((l,idx)=>{
   osiList.appendChild(row);
   osiList.appendChild(detail);
 });
-// open first by default
 osiList.querySelector('.osi-row').click();
 
-// Topology diagrams (SVG generated)
 const topoSvg = document.getElementById('topoSvg');
 const topoCaption = document.getElementById('topoCaption');
 const W=400, H=260, CX=200, CY=130;
@@ -188,10 +182,8 @@ document.querySelectorAll('.topo-btn').forEach(btn=>{
 });
 renderTopo('star');
 
-// ---------- Reduced motion check ----------
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- Scroll reveal ----------
 const revealItems = document.querySelectorAll('.reveal, .reveal-stagger');
 const revealObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
@@ -200,7 +192,6 @@ const revealObs = new IntersectionObserver((entries)=>{
 }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
 revealItems.forEach(el=> revealObs.observe(el));
 
-// ---------- Background particle canvas ----------
 (function(){
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
@@ -248,12 +239,10 @@ revealItems.forEach(el=> revealObs.observe(el));
   if(!reduceMotion){ requestAnimationFrame(step); } else { step(); }
 })();
 
-// ---------- Helper: animated packet dot along a path ----------
 function animatedPacket(pathD, color, dur, delay, r=4){
   return `<circle r="${r}" fill="${color}"><animateMotion dur="${dur}s" begin="${delay}s" repeatCount="indefinite" path="${pathD}"/></circle>`;
 }
 
-// ---------- Topic 1: node fabric ----------
 (function(){
   const svg = document.getElementById('netFabric');
   if(!svg) return;
@@ -273,7 +262,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   pts.forEach((p,i)=>{
     s += `<circle cx="${p.x}" cy="${p.y}" r="5" fill="${palette[i%palette.length]}" opacity="0.9"><animate attributeName="opacity" values="0.5;1;0.5" dur="${3+Math.random()*3}s" repeatCount="indefinite"/></circle>`;
   });
-  // traveling packets along a few random edges
   for(let k=0;k<6;k++){
     const a = pts[Math.floor(Math.random()*n)], b = pts[Math.floor(Math.random()*n)];
     if(a===b) continue;
@@ -282,7 +270,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 3: OSI stack with packet ----------
 (function(){
   const svg = document.getElementById('osiStack');
   if(!svg) return;
@@ -299,7 +286,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   const bottomY = top + (layers-1)*(layerH+gap) + layerH/2;
   const topY = top + layerH/2;
   const px = left + w - 22;
-  // packet travels down then up
   s += `<circle cx="${px}" cy="${topY}" r="6" fill="#F2A65A">
     <animate attributeName="cy" values="${topY};${bottomY};${bottomY};${topY};${topY}" keyTimes="0;0.45;0.55;1;1" dur="6s" repeatCount="indefinite"/>
     <animate attributeName="fill" values="#F2A65A;#7C8CFF;#7C8CFF;#F2A65A;#F2A65A" keyTimes="0;0.45;0.55;1;1" dur="6s" repeatCount="indefinite"/>
@@ -307,7 +293,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 5: IP bits visualization ----------
 (function(){
   const svg = document.getElementById('ipBits');
   if(!svg) return;
@@ -331,7 +316,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 1: computer architecture diagram ----------
 (function(){
   const svg = document.getElementById('archDiagram');
   if(!svg) return;
@@ -353,7 +337,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 5b: packet structure ----------
 (function(){
   const svg = document.getElementById('packetShape');
   if(!svg) return;
@@ -372,7 +355,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 4: home network diagram ----------
 (function(){
   const svg = document.getElementById('homeNet');
   if(!svg) return;
@@ -404,7 +386,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 6: DHCP flow ----------
 (function(){
   const svg = document.getElementById('dhcpFlow');
   if(!svg) return;
@@ -427,7 +408,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 7: DNS flow ----------
 (function(){
   const svg = document.getElementById('dnsFlow');
   if(!svg) return;
@@ -446,7 +426,6 @@ function animatedPacket(pathD, color, dur, delay, r=4){
   svg.innerHTML = s;
 })();
 
-// ---------- Topic 8: FTP flow ----------
 (function(){
   const svg = document.getElementById('ftpFlow');
   if(!svg) return;
